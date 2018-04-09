@@ -12,6 +12,9 @@ import com.example.bean.UserBean;
 
 public interface ProductDao extends JpaRepository<ProductBean, Long> {
 
-	@Query("from ProductBean b where b.sid=:sid")
+	@Query("from ProductBean b where b.sid=:sid order by b.isTop desc")
 	List<ProductBean> findBySid(@Param("sid") Long sid);
+	
+	@Query("from ProductBean b where b.sid=:sid and b.isTop = 1")
+	ProductBean findByTop(@Param("sid") Long sid);
 }

@@ -20,6 +20,7 @@ public class ProductBean {
 	private double price;
 	private String info;
 	private Long sid;
+	private int isTop = 0;  //1=top;
 	public Long getId() {
 		return id;
 	}
@@ -73,6 +74,12 @@ public class ProductBean {
 	}
 	public void setSid(Long sid) {
 		this.sid = sid;
+	}
+	public int getIsTop() {
+		return isTop;
+	}
+	public void setIsTop(int isTop) {
+		this.isTop = isTop;
 	}
 	
 }

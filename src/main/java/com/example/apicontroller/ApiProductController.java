@@ -107,4 +107,19 @@ public class ApiProductController {
 		productDao.delete(Long.parseLong(id));
 		return ResultUtils.resultSucceed("");
 	}
+	
+	@RequestMapping(value = "/top", method = RequestMethod.POST)
+	public BaseBean<ProductBean> top(HttpServletRequest request) {
+		String id = request.getParameter("id");
+		String sid = request.getParameter("sid");
+		ProductBean bean = productDao.findByTop(Long.parseLong(sid));
+		if (bean != null) {
+			bean.setIsTop(0);
+			productDao.save(bean);
+		}
+		ProductBean bean2 = productDao.findOne(Long.parseLong(id));
+		bean2.setIsTop(1);
+		productDao.save(bean2);
+		return ResultUtils.resultSucceed(bean2);
+	}
 }
